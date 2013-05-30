@@ -17,7 +17,7 @@ int main()
     }
     printf("\n");
     
-	return 0;
+    return 0;
 }
 
 void quickSort(int *array, int s, int e)
