@@ -25,7 +25,7 @@ typedef struct _node {
 void calcDP(int *array, Node *DP, int size);
 int maxElement(int *array, int size);
 void printLIS(int *array, Node *LLIS, int size);
-void printLISFromNode(Node *LLIS, int lastNode);
+void printLISFromNode(int *array, Node *LLIS, int lastNode, int *nodes, int nodesCount);
 
 int main()
 {
@@ -34,17 +34,20 @@ int main()
     calcDP(array, LLIS, MAX);
     printLIS(array, LLIS, MAX);
     
-    return 0;
+	return 0;
 }
 
 void calcDP(int *array, Node *LLIS, int size)
 {
     int i, j;
     for (i = 0; i < MAX; i++) {
+        if (i == 6) {
+            printf("");
+        }
         LLIS[i].length = 1;
         int count = 0;
         for (j = 0; j < i; j++) {
-            if (array[i] >= array[j] && LLIS[j].length+1 > LLIS[i].length) {
+            if (array[i] >= array[j]) {
                 if (LLIS[j].length+1 > LLIS[i].length) {
                     count = 0;
                     LLIS[i].length = LLIS[j].length+1;
@@ -72,10 +75,23 @@ void printLIS(int *array, Node *LLIS, int size)
         }
     }
     
-    printLISFromNode(LLIS, lastNode);
+    int nodes[MAX];
+    printLISFromNode(array, LLIS, lastNode, nodes, 0);
 }
 
-void printLISFromNode(Node *LLIS, int lastNode)
+void printLISFromNode(int *array, Node *LLIS, int lastNode, int *nodes, int nodesCount)
 {
+    nodes[nodesCount] = array[lastNode];
     
+    int i;
+    if (LLIS[lastNode].preNodes.count == 0) {
+        for (i = 0; i <= nodesCount; i++) {
+            printf("%d ", nodes[i]);
+        }
+        printf("\n");
+    } else {
+        for (i = 0; i < LLIS[lastNode].preNodes.count; i++) {
+            printLISFromNode(array, LLIS, LLIS[lastNode].preNodes.elements[i], nodes, nodesCount+1);
+        }
+    }
 }
