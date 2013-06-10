@@ -3,7 +3,7 @@
 //  CTemp
 //
 //  Created by lanner on 13-3-2.
-//  Copyright (c) 2013Äê lanner. All rights reserved.
+//  Copyright (c) 2013ï¿½ï¿½ lanner. All rights reserved.
 //
 
 #include <stdio.h>
@@ -25,10 +25,10 @@ int main()
 {
     Tree tree = constructATree();
     visitTreeWithPreOrder(tree);
-	visitTreeWithInOrder(tree);
-	visitTreeWithPostOrder(tree);
+    visitTreeWithInOrder(tree);
+    visitTreeWithPostOrder(tree);
 
-	getchar();
+    getchar();
     return 0;
 }
 
