@@ -61,7 +61,7 @@ Tree constructATree()
 
 void visitTreeWithPreOrder(Tree root)
 {
-	printf("PreOrder: ");
+    printf("PreOrder: ");
 
     Node *nodeStack[MAX*2];
     int size = 0;
@@ -77,12 +77,12 @@ void visitTreeWithPreOrder(Tree root)
         }
     }
 
-	printf("\n");
+    printf("\n");
 }
 
 void visitTreeWithInOrder(Tree root)
 {
-	printf("InOrder: ");
+    printf("InOrder: ");
 
 	Node *nodeStack[MAX*2];
     int size = 0;
@@ -99,12 +99,12 @@ void visitTreeWithInOrder(Tree root)
         }
     }
 
-	printf("\n");
+    printf("\n");
 }
 
 void visitTreeWithPostOrder(Tree root)
 {
-	printf("PostOrder: ");
+    printf("PostOrder: ");
 
 	Node *nodeStack[MAX*2];
 	int tagStack[MAX*2] = {0};
@@ -131,5 +131,5 @@ void visitTreeWithPostOrder(Tree root)
         }
     }
 
-	printf("\n");
+    printf("\n");
 }
