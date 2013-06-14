@@ -8,3 +8,4 @@ CImplentation
 * QuickSortDemo.c -- 快排
 * VisitTreeNodeNonRecursivelyDemo.c -- 非递归方法前/中/后序遍历二叉树，参考自[重剑无锋csdn](http://blog.csdn.net/kofsky/article/details/2886453)
 * binarySearchDemo.c -- 二分查找
+* LCS.c -- 最大公共子序列，参考自[July_结构之法_算法之道_csdn](http://blog.csdn.net/v_july_v/article/details/6695482)
