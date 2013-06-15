@@ -32,29 +32,37 @@ void LCS(const char *str1, const size_t length1, const char *str2, const size_t 
     int i, j;
     for (i = 0; i < length1; i++) {
         for (j = 0; j < length2; j++) {
-            if (i == 0 || j == 0) {
-                if (str1[i] == str2[j]) {
-                    DP[i][j] = 1;
-                } else {
-                    DP[i][j] = 0;
-                }
-            } else {
-                if (str1[i] == str2[j]) {
-                    DP[i][j] = DP[i-1][j-1] + 1;
-					preInfo[i][j] = INCLUDE_ME;
-                } else {
-					if (DP[i-1][j] > DP[i][j-1]) {
-						DP[i][j] = DP[i-1][j];
-						preInfo[i][j] = SAME_AS_UP;
-					} else if (DP[i-1][j] == DP[i][j-1]) {
-						DP[i][j] = DP[i-1][j];
-						preInfo[i][j] = (SAME_AS_LEFT | SAME_AS_UP);
-					} else {
-						DP[i][j] = DP[i][j-1];
+			if (str1[i] == str2[j]) {
+				if (i == 0 || j == 0) {
+					DP[i][j] = 1;
+				} else {
+					DP[i][j] = DP[i-1][j-1] + 1;
+				}
+				preInfo[i][j] = INCLUDE_ME;
+			} else {
+				if (i == 0 && j == 0) {
+					DP[i][j] = 0;
+				} else if (i > 0 && j == 0) {
+					DP[i][j] = DP[i-1][j];
+					preInfo[i][j] = SAME_AS_UP;
+				} else if (i == 0 && j > 0) {
+					DP[i][j] = DP[i][j-1];
+					preInfo[i][j] = SAME_AS_LEFT;
+				} else {
+					int left = DP[i][j-1];
+					int up = DP[i-1][j];
+					if (left > up) {
+						DP[i][j] = left;
 						preInfo[i][j] = SAME_AS_LEFT;
+					} else if (left == up) {
+						DP[i][j] = left;
+						preInfo[i][j] = SAME_AS_LEFT | SAME_AS_UP;
+					} else {
+						DP[i][j] = up;
+						preInfo[i][j] = SAME_AS_UP;
 					}
-                }
-            }
+				}
+			}
         }
     }
 
@@ -63,7 +71,7 @@ void LCS(const char *str1, const size_t length1, const char *str2, const size_t 
 
 void printLCS(const char *str1, const char *str2, const int DP[][MAX], const int preInfo[][MAX], const int i, const int j)
 {
-	if (i && j) {
+	if (i >= 0  && j >= 0) {
 		if (preInfo[i][j] & INCLUDE_ME) {
 			printLCS(str1, str2, DP, preInfo, i-1, j-1);
 			printf("%c ", str1[i]);
