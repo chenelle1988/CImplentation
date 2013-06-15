@@ -5,7 +5,7 @@
 #define MAX 15
 
 void LCS(const char *str1, const size_t length1, const char *str2, const size_t length2);
-void printLCS(const char *str1, const char *str2, const int DP[][MAX], const int preInfo[][MAX], const int i, const int j);
+void printLCS(const char *str1, const char *str2, const int DP[][MAX], const int preInfo[][MAX], const int i, const int j, char lcs[], int lcsSize);
 
 int main()
 {
@@ -66,23 +66,30 @@ void LCS(const char *str1, const size_t length1, const char *str2, const size_t 
         }
     }
 
-	printLCS(str1, str2, DP, preInfo, length1-1, length2-1);
+	char lcs[MAX];
+	printLCS(str1, str2, DP, preInfo, length1-1, length2-1, lcs, 0);
 }
 
-void printLCS(const char *str1, const char *str2, const int DP[][MAX], const int preInfo[][MAX], const int i, const int j)
+void printLCS(const char *str1, const char *str2, const int DP[][MAX], const int preInfo[][MAX], const int i, const int j, char lcs[], int lcsSize)
 {
 	if (i >= 0  && j >= 0) {
 		if (preInfo[i][j] & INCLUDE_ME) {
-			printLCS(str1, str2, DP, preInfo, i-1, j-1);
-			printf("%c ", str1[i]);
+			lcs[lcsSize] = str1[i];
+			printLCS(str1, str2, DP, preInfo, i-1, j-1, lcs, lcsSize+1);
 		}
 
 		if (preInfo[i][j] & SAME_AS_LEFT) {
-			printLCS(str1, str2, DP, preInfo, i, j-1);
+			printLCS(str1, str2, DP, preInfo, i, j-1, lcs, lcsSize);
 		}
 
 		if (preInfo[i][j] & SAME_AS_UP) {
-			printLCS(str1, str2, DP, preInfo, i-1, j);
+			printLCS(str1, str2, DP, preInfo, i-1, j, lcs, lcsSize);
 		}
+	} else {
+		int k;
+		for (k = lcsSize-1; k >= 0; k--) {
+			printf("%c ", lcs[k]);
+		}
+		printf("\n");
 	}
 }
