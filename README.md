@@ -12,4 +12,3 @@ CImplentation
  * LCS.c -- 最大公共子序列，参考自[July_结构之法_算法之道_csdn](http://blog.csdn.net/v_july_v/article/details/6695482)
 
 * MS100 -- July整理的微软面试一百题的C语言实现
->>>>>>> 9747b15ea057d1f2e97b5726066c66d790d9fa17
