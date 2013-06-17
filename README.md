@@ -2,7 +2,7 @@ CImplentation
 =============
 平时遇到的一些算法或算法题的C语言实现
 
-* ClassicAlgorithm 经典算法
+* ClassicAlgorithm 一些经典算法的C语言实现
  * FindMinNNumbersDemo.c -- 利用快排的partition函数，找到一个数组中最小的N个数，参考自《编程之美》
  * KMPDemo.c -- kmp算法做字符串匹配，参考了《算法与数据结构》
  * LIS.c -- 最长递增子序列，参考自《编程之美》
@@ -11,4 +11,5 @@ CImplentation
  * binarySearchDemo.c -- 二分查找
  * LCS.c -- 最大公共子序列，参考自[July_结构之法_算法之道_csdn](http://blog.csdn.net/v_july_v/article/details/6695482)
 
-* MS100 July整理的微软面试100题
+* MS100 -- July整理的微软面试一百题的C语言实现
+>>>>>>> 9747b15ea057d1f2e97b5726066c66d790d9fa17
